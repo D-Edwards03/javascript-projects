@@ -35,6 +35,18 @@ console.log("Hold status: " + holdStatus(cargoHold));
 
 //d). Decide where to best place your function call to gather our new fuel.
 
+let nonSuspicious = function (par) {
+  if (checkFuel(par) === 'green') {
+    return par - 100001;
+  } else if (checkFuel(par) === 'yellow') {
+    return par - 50001;
+  } else {
+    return par;
+  }
+}
+//console.log(nonSuspicious(fuelLevel));
+nonSuspicious(fuelLevel);
+
 /* Next, liberate some of that glorious cargo.
  */
 
@@ -46,6 +58,17 @@ console.log("Hold status: " + holdStatus(cargoHold));
 
 //d). Don’t get hasty, matey! Remember to test your function.
 
+let innocent = function (arr) {
+  let stolenArr = [];
+  let stolen1 = arr.shift();
+  let stolen2 = arr.pop();
+  cargoHold.push('pillow', 'cup');
+  stolenArr.push(stolen1, stolen2);
+  return stolenArr;
+}
+//console.log(innocent(cargoHold));
+//console.log(cargoHold);
+
 /* Finally, you need to print a receipt for the accountant. Don’t laugh! That genius knows MATH and saves us more gold than you can imagine.
  */
  
@@ -54,3 +77,10 @@ console.log("Hold status: " + holdStatus(cargoHold));
 //b). Call your anonymous fuel and cargo functions from within irs.
 
 //c). Use a template literal to return, "Raided _____ kg of fuel from the tanks, and stole ____ and ____ from the cargo hold."
+
+let irs = function (levelOfFuel, itemsInCargo) {
+  let arr = innocent(itemsInCargo);
+  return `Raided ${nonSuspicious(fuelLevel)} kg of fuel from the tanks, and stole ${arr[0]} and ${arr[1]} from the cargo hold.`
+}
+
+console.log(irs(fuelLevel, cargoHold));

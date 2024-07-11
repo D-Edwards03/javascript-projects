@@ -6,6 +6,18 @@ b) If passed a string, return the string “ARRR!”
 c) Be sure to test your function before moving on the next part. 
 */
 
+let practice = function (par) {
+    if (typeof par === 'number') {
+        return par*3; //a
+    } else if (typeof par === 'string') {
+        return "ARRR!"; //b
+    } else {
+        return par;
+    }
+}
+//console.log(practice(15));
+//console.log(practice('Benji'));
+
 /* Add to your code! Use your fuction and the map method to change an array  as follows:
 a) Triple any the numbers.
 b) Replace any strings with “ARRR!”
@@ -13,3 +25,6 @@ c) Print the new array to confirm your work.
 */
 
 let arr = ['Elocution', 21, 'Clean teeth', 100];
+
+let newArr = arr.map(practice);
+console.log(newArr);
