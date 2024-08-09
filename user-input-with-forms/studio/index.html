@@ -3,9 +3,28 @@
 <head>
 	<meta charset="utf-8">
 	<script>
+		function setSearchEngine () {
+			const selectedEngine = document.querySelector('input[name=engine]:checked');
+			const queryInput = document.querySelector('input[name=q]');
+			if (selectedEngine && queryInput.value.trim() !== '') {
+				const searchEngineValue = selectedEngine.value;
+				const searchUrls = {
+					google: 'https://www.google.com/search',
+					duckDuckGo: 'https://duckduckgo.com',
+					bing: 'https://www.bing.com/search',
+					ask: 'https://www.ask.com/web',
+				};
+				const actionUrl = searchUrls[searchEngineValue];
+
+				document.getElementById('searchForm').action = actionUrl;
+				document.getElementById('searchForm').submit();
+			}
+		}
 		// TODO: create a handler
     window.addEventListener("load", function(){
         // TODO: register the handler
+		console.log('Page loaded. Function ready.');
+		document.getElementById('searchForm').addEventListener("submit", setSearchEngine);
     });
 	</script>
 </head>
@@ -14,6 +33,24 @@
 
 	<form id="searchForm">
     <!-- TODO: add form elements -->
+	 <label for = "searchTerm">Search Term</label>
+	 <input type="text" name="q" placeholder="entry">
+	 <fieldset>
+		<legend>Search Type</legend>
+		<label>
+			<input type="radio" name="engine" value="google">Google
+		</label>
+		<label>
+			<input type="radio" name="engine" value="duckDuckGo">DuckDuckGo
+		</label>
+		<label>
+			<input type="radio" name="engine" value="bing">Bing
+		</label>
+		<label>
+			<input type="radio" name="engine" value="ask">Ask
+		</label>
+	 </fieldset>
+	 <button type="submit">Go!</button>
 	</form>
 
 </body>
